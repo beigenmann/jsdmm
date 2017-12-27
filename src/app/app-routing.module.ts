@@ -9,7 +9,16 @@ const routes: Routes = [{
 {
   path: 'about',
   component: AboutComponent
-}];
+},
+{
+  path: '',
+  redirectTo: 'dmm', pathMatch: 'full' 
+},
+{
+  path: '**',
+  redirectTo: 'dmm', pathMatch: 'full'
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
