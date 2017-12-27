@@ -2,17 +2,20 @@
   "name": "Digital Voltmeter",
   "version": "2",
   "manifest_version": 2,
+  "permissions": [ "serial"],
   "minimum_chrome_version": "60",
   "app": {
+    "default_icon": "icon_48.png",
     "background": {
-      "page": "index.html",
-      "persistent": false
+      "container": "tab",
+       "scripts": [ "background.js" ]
     }
   },
+  
   "icons": {
-    "16": "icon_16.png",
-    "38": "icon_48.png",
-    "48": "icon_48.png",
-    "128": "icon_128.png"
+    "16": "assets/icon_16.png",
+    "38": "assets/icon_48.png",
+    "48": "assets/icon_48.png",
+    "128": "assets/icon_128.png"
   }
 }
