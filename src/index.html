@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Digital Voltmeter</title>
@@ -7,7 +8,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
+
 <body>
+  <router-outlet></router-outlet>
+  <div id="container">
+    <label>
+      Port:
+      <select id="port-picker"></select>
+    </label>
+
+    <label>
+      Status:
+      <span id="status">Loading</span>
+    </label>
+  </div>
   <app-root></app-root>
 </body>
+
 </html>
