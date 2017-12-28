@@ -11,12 +11,12 @@ const routes: Routes = [{
   component: AboutComponent
 },
 {
-  path: '',
-  redirectTo: 'dmm', pathMatch: 'full' 
+  path: 'dmm',
+  component: DmmComponent
 },
 {
-  path: '**',
-  redirectTo: 'dmm', pathMatch: 'full'
+  path: '',
+  redirectTo: 'dmm', pathMatch: 'full' 
 }
 ];
 
