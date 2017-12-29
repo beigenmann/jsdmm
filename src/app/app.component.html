@@ -1,8 +1,25 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <!--<mat-spinner></mat-spinner>--> 
+    <mat-form-field>
+      <mat-select placeholder="Port path" [(value)]="selectedPathValue">
+        <mat-option *ngFor="let port of port" [value]="port.value">
+          {{ port.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Baud Rate:" [(value)]="selectedBaudValue">
+          <mat-option *ngFor="let baudrate of baudrate" [value]="baudrate.value">
+            {{ baudrate.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    <a mat-button (click)="connectPort()">{{ Connect_Text }}</a>
+    <a mat-button routerLink="dmm">Digital Voltmeter</a>
+    <a mat-button routerLink="about">About</a>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-<ul>
-    <li><a routerLink="dmm" >Digital Voltmeter</a></li> 
-    <li><a routerLink="about" >About</a></li> 
-</ul>
-<button mat-button>My Button</button>
-<button >My Button1</button>
 <router-outlet></router-outlet>
