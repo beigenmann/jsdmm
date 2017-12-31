@@ -1,4 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
+import * as dmmconfig from '../assets/config/jsdmm.config.json';
 import * as serialPort from 'browser-serialport/index';
 
 
@@ -17,6 +18,8 @@ export class AppComponent  implements OnInit {
   Connect_Text: string = 'Connect';
   selectedPathValue: string;
   selectedBaudValue: number =2400;
+ 
+ 
 
   port = [
     
@@ -39,7 +42,10 @@ export class AppComponent  implements OnInit {
     {value: 50, viewValue: 50}
   ];
 
-  constructor() { }
+  constructor() { 
+    
+    console.log(dmmconfig);
+  }
   
 
   ngOnInit() {
@@ -56,10 +62,18 @@ export class AppComponent  implements OnInit {
   
 
   connectPort(){
-    
+    let array:  Uint8Array= new Uint8Array(15);
+    let arrayIndex: number = 0;
+    let dispvalue: string;
     if(this.Connect_Text == 'Connect'){
       var serialPort = new SerialPort(this.selectedPathValue, {
-        baudrate:  Math.round(this.selectedBaudValue)
+        baudrate:  Math.round(this.selectedBaudValue),
+        parity: 'none',
+        rtscts: false,
+        databits: 8,
+        stopbits: 1,
+        buffersize: 256
+
       }, false); // this is the openImmediately flag [default is true]
       
       serialPort.open((error) => {
@@ -68,7 +82,13 @@ export class AppComponent  implements OnInit {
         } else {
           console.log('open port');
           serialPort.on('data', (data) => {
-            console.log('data received: ' + data);
+            ​array[arrayIndex++] = data;
+            console.log('date received: ' +  data + ' type ' +typeof  data);
+            if(arrayIndex >= 14 || data == 0x0a){
+              arrayIndex = 0;
+              console.log('block received: ' +  array[0]);
+            }
+          
           });
         }
       });

@@ -1,0 +1,26 @@
+{
+"device":[
+    {
+        "name": "VC99",
+        "serial"             : {
+            "baudrate":  2400,
+            "parity": "none",
+            "rtscts": false,
+            "databits": 8,
+            "stopbits": 1,
+            "buffersize": 256
+        }
+    },
+    {
+        "name": "ANYOTHER",
+        "serial"             : {
+            "baudrate":  2400,
+            "parity": "none",
+            "rtscts": false,
+            "databits": 8,
+            "stopbits": 1,
+            "buffersize": 256
+        }
+    }
+]
+}
