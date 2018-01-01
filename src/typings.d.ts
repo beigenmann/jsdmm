@@ -4,6 +4,8 @@ interface NodeModule {
   id: string;
 }
 declare module "*.config.json" {
-  const device: [{name:string}];
-  export default device;
+  const value: any;
+   export default value;
+  
 }
+

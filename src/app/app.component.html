@@ -9,9 +9,9 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-select placeholder="Baud Rate:" [(value)]="selectedBaudValue">
-          <mat-option *ngFor="let baudrate of baudrate" [value]="baudrate.value">
-            {{ baudrate.viewValue }}
+        <mat-select placeholder="DMM Dev:" [(value)]="selectedDMMValue">
+          <mat-option *ngFor="let dmmdevice of dmmdevice" [value]="dmmdevice.value">
+            {{ dmmdevice.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>

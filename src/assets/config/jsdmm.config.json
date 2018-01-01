@@ -9,7 +9,44 @@
             "databits": 8,
             "stopbits": 1,
             "buffersize": 256
+        },
+        "protocole":[{
+            "name": "sign",
+            "mask": 255
+        
+        },{
+            "name": "dig1",
+            "mask": 255
+        },{
+            "name": "dig2",
+            "mask": 255
+        },{
+            "name": "dig3",
+            "mask": 255
+        
+        },{
+            "name": "dig4",
+            "mask": 255
+        },{
+            "name": "space",
+            "mask": 0
+        },{
+            "name": "point",
+            "mask": 255,
+            "map":[{
+                "0": 30
+            },{
+                "1": 31
+            },{
+                "2": 32
+            },{
+                "3": 34
+            }]
         }
+
+        
+
+        ]
     },
     {
         "name": "ANYOTHER",
