@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DmmComponent implements OnInit {
   SEVENSG_VALUE_Text: string = '0.000';
   SEVENSG_UNIT_Text: string = 'mV';
-  SEVENSG_ICON_Text: string ='F';
+  SEVENSG_ICON_Text: string = 'F';
   constructor() { }
 
   ngOnInit() {

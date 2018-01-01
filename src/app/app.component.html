@@ -1,6 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <!--<mat-spinner></mat-spinner>--> 
+    <!--<mat-spinner></mat-spinner>-->
     <mat-form-field>
       <mat-select placeholder="Port path" [(value)]="selectedPathValue">
         <mat-option *ngFor="let port of port" [value]="port.value">
@@ -9,13 +9,13 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-        <mat-select placeholder="DMM Dev:" [(value)]="selectedDMMValue">
-          <mat-option *ngFor="let dmmdevice of dmmdevice" [value]="dmmdevice.value">
-            {{ dmmdevice.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    
+      <mat-select placeholder="DMM Dev:" [(value)]="selectedDMMValue">
+        <mat-option *ngFor="let dmmdevice of dmmdevice" [value]="dmmdevice.value">
+          {{ dmmdevice.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <a mat-button (click)="connectPort()">{{ Connect_Text }}</a>
     <a mat-button routerLink="dmm">Digital Voltmeter</a>
     <a mat-button routerLink="about">About</a>

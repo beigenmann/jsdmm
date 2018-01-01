@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DmmComponent} from './dmm/dmm.component';
-import {AboutComponent} from './about/about.component';
+import { DmmComponent } from './dmm/dmm.component';
+import { AboutComponent } from './about/about.component';
 const routes: Routes = [{
   path: 'dmm',
   component: DmmComponent
@@ -16,7 +16,7 @@ const routes: Routes = [{
 },
 {
   path: '',
-  redirectTo: 'dmm', pathMatch: 'full' 
+  redirectTo: 'dmm', pathMatch: 'full'
 }
 ];
 
