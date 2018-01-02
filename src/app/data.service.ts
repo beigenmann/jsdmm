@@ -1,4 +1,6 @@
 import { Injectable ,OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import * as dmmconfig from '../assets/config/jsdmm.config.json';
 import * as serialPort from 'browser-serialport/index';
 let SerialPort = serialPort.SerialPort;
@@ -27,6 +29,8 @@ export interface DDMDEV {
 @Injectable()
 export class DataService implements OnInit{
   Connect_Text: string = 'Connect';
+  private valueSubject: Subject<{value:string,unit:string}> = new Subject();
+
   dmmdevice = [
   ];
   
@@ -38,7 +42,11 @@ export class DataService implements OnInit{
     });
   }
   ngOnInit() {
-    
+
+  }
+  
+  getValue():Observable<{value:string,unit:string}>{
+    return this.valueSubject.asObservable();
   }
 
   getPorts(){
@@ -105,7 +113,7 @@ export class DataService implements OnInit{
     if (si_unit) { 
       unit = unit + si_unit;
     }
-    console.log(disp + ' ' + unit);
+    this.valueSubject.next({value: disp,unit: unit});
   }
 
   connectPort(dev: DDMDEV,selectedPathValue: string ) {
