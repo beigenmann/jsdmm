@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService,DDMDEV } from './data.service';
-import * as serialPort from 'browser-serialport/index';
-let SerialPort = serialPort.SerialPort;
-
-
-
-
 
 @Component({
   selector: 'app-root',
@@ -35,15 +29,7 @@ export class AppComponent implements OnInit {
 
   
   ngOnInit() {
-    serialPort.list((err, ports) => {
-      if (err) {
-        console.log('err');
-        return;
-      }
-      ports.forEach(portItem => {
-        this.port.push({ value: portItem.comName, viewValue: portItem.comName });
-      });
-    });
+    this.port = this.data.getPorts();
     this.dmmdevice = this.data.dmmdevice;
   }
   connectPort(){

@@ -41,6 +41,22 @@ export class DataService implements OnInit{
     
   }
 
+  getPorts(){
+    let port = [
+
+    ];
+    serialPort.list((err, ports) => {
+      if (err) {
+        console.log('err');
+        return;
+      }
+      ports.forEach(portItem => {
+        port.push({ value: portItem.comName, viewValue: portItem.comName });
+      });
+    });
+    return port;
+  }
+
   doParse(arrayBuffer: number[], dev: DDMDEV) {
     let map = new Map<string, object>();
     dev.protocol.forEach(prod => {
