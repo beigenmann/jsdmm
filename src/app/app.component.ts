@@ -14,15 +14,15 @@ interface DDMDEV {
     stopbits: number,
     buffersize: number
   }
-  val:string[],
-  unit:string[],
+  val: string[],
+  unit: string[],
   protocol: [{
     name: string,
     byteNr: number,
     mask: number,
     mapfrom: number,
     mapto: object,
-    char:object
+    char: object
   }]
 }
 @Component({
@@ -52,50 +52,59 @@ export class AppComponent implements OnInit {
     const device: DDMDEV[] = (<any>dmmconfig).device;
     device.forEach(devItem => {
       this.dmmdevice.push({ value: devItem, viewValue: devItem.name });
-      
+
     });
   }
 
-  doParse(arrayBuffer: number[] ){
-    let map = new Map<string, object>(); 
+  doParse(arrayBuffer: number[]) {
+    let map = new Map<string, object>();
     this.selectedDMMValue.protocol.forEach(prod => {
       var val = arrayBuffer[prod.byteNr];
       if (prod.mask) {
         val = val & prod.mask;
       }
-      if(prod.mapfrom){
-        if(val == prod.mapfrom){
-          map.set( prod.name, prod.mapto);
+      if (prod.mapfrom) {
+        if (val == prod.mapfrom) {
+          map.set(prod.name, prod.mapto);
         }
-      }else{
-        if(prod.char){
-          map.set( prod.name,new String(String.fromCharCode(val)));
-        }else{
-          map.set( prod.name,new Number(val));
+      } else {
+        if (prod.char) {
+          map.set(prod.name, new String(String.fromCharCode(val)));
+        } else {
+          map.set(prod.name, new Number(val));
         }
       }
     });
-    let disp :string;
-    let sign:string = String(map.get("SIGN"));
-    if(sign && sign == '-'){
+    let disp: string;
+    let sign: string = String(map.get("SIGN"));
+    if (sign && sign == '-') {
       disp = '-';
-    }else{
-      disp = '';
+    } else {
+      disp = ' ';
     }
     const val: Number = Number(map.get("POINT"));
     let nr = 0;
-    this.selectedDMMValue.val.forEach(dist =>{
-      const c:object  = map.get(dist);
-      if(c){
-        if(nr == val && nr != 0){
-          disp = disp + '.' +c;
-        }else{
+    this.selectedDMMValue.val.forEach(dist => {
+      const c: object = map.get(dist);
+      if (c) {
+        if (nr == val && nr != 0) {
+          disp = disp + '.' + c;
+        } else {
           disp = disp + c;
         }
       }
-      nr ++;
+      nr++;
     });
-    console.log(disp);
+    let unit: string = '';
+    const si_pr: object = map.get("SI-PR");
+    if (si_pr) { 
+      unit = unit + si_pr;
+    }
+    const si_unit: object = map.get("SI_UNIT");
+    if (si_unit) { 
+      unit = unit + si_unit;
+    }
+    console.log(disp + ' ' + unit);
   }
   ngOnInit() {
     serialPort.list((err, ports) => {
