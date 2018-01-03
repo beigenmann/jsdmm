@@ -1,6 +1,6 @@
-import { Injectable ,OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import * as dmmconfig from '../assets/config/jsdmm.config.json';
 import * as serialPort from 'browser-serialport/index';
 let SerialPort = serialPort.SerialPort;
@@ -27,14 +27,14 @@ export interface DDMDEV {
 }
 
 @Injectable()
-export class DataService implements OnInit{
+export class DataService implements OnInit {
   Connect_Text: string = 'Connect';
-  private valueSubject: Subject<{value:string,unit:string}> = new Subject();
+  private valueSubject: Subject<{ value: string, unit: string, map: Map<string, object> }> = new Subject();
 
   dmmdevice = [
   ];
-  
-  constructor() { 
+
+  constructor() {
     const device: DDMDEV[] = (<any>dmmconfig).device;
     device.forEach(devItem => {
       this.dmmdevice.push({ value: devItem, viewValue: devItem.name });
@@ -44,12 +44,12 @@ export class DataService implements OnInit{
   ngOnInit() {
 
   }
-  
-  getValue():Observable<{value:string,unit:string}>{
+
+  getValue(): Observable<{ value: string, unit: string, map: Map<string, object> }> {
     return this.valueSubject.asObservable();
   }
 
-  getPorts(){
+  getPorts() {
     let port = [
 
     ];
@@ -66,7 +66,7 @@ export class DataService implements OnInit{
   }
 
   doParse(arrayBuffer: number[], dev: DDMDEV) {
-    let map = new Map<string, object>();
+    let map: Map<string, object> = new Map<string, object>();
     dev.protocol.forEach(prod => {
       var val = arrayBuffer[prod.byteNr];
       if (prod.mask) {
@@ -106,17 +106,17 @@ export class DataService implements OnInit{
     });
     let unit: string = '';
     const si_pr: object = map.get("SI-PR");
-    if (si_pr) { 
+    if (si_pr) {
       unit = unit + si_pr;
     }
     const si_unit: object = map.get("SI_UNIT");
-    if (si_unit) { 
+    if (si_unit) {
       unit = unit + si_unit;
     }
-    this.valueSubject.next({value: disp,unit: unit});
+    this.valueSubject.next({ value: disp, unit: unit, map: map });
   }
 
-  connectPort(dev: DDMDEV,selectedPathValue: string ) {
+  connectPort(dev: DDMDEV, selectedPathValue: string) {
     const dmmbuffer_size: number = 14;
     let arrayBuffer: number[] = [dmmbuffer_size];
     let arrayIndex: number = 0;
@@ -138,7 +138,7 @@ export class DataService implements OnInit{
         if (error) {
           console.log('failed to open: ' + error);
         } else {
-         //console.log('open port ' + this.selectedPathValue + " " + this.selectedDMMValue.serial.baudrate);
+          //console.log('open port ' + this.selectedPathValue + " " + this.selectedDMMValue.serial.baudrate);
           serialPort.on('data', (data) => {
             if (data) {
               const byteArray = new Uint8Array(data);
@@ -146,7 +146,7 @@ export class DataService implements OnInit{
                 const item = byteArray[i];
                 arrayBuffer[arrayIndex++] = item;
                 if (item == 0x0a) {
-                  this.doParse(arrayBuffer,dev);
+                  this.doParse(arrayBuffer, dev);
                   arrayIndex = 0;
                 }
               }

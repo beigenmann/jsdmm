@@ -11,10 +11,6 @@ const routes: Routes = [{
   component: AboutComponent
 },
 {
-  path: 'dmm',
-  component: DmmComponent
-},
-{
   path: '',
   redirectTo: 'dmm', pathMatch: 'full'
 }
