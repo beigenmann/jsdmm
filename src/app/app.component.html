@@ -1,16 +1,15 @@
-<mat-toolbar>
+<mat-toolbar  >
   <mat-toolbar-row>
-    <!--<mat-spinner></mat-spinner>-->
     <mat-form-field>
       <mat-select placeholder="Port path" [(value)]="selectedPathValue">
-        <mat-option *ngFor="let port of port" [value]="port.value">
+        <mat-option (click)="onPath()" *ngFor="let port of port" [value]="port.value">
           {{ port.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="DMM Dev:" [(value)]="selectedDMMValue">
-        <mat-option *ngFor="let dmmdevice of dmmdevice" [value]="dmmdevice.value">
+        <mat-option (click)="onDev()" *ngFor="let dmmdevice of dmmdevice" [value]="dmmdevice.value">
           {{ dmmdevice.viewValue }}
         </mat-option>
       </mat-select>

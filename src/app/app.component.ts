@@ -32,6 +32,12 @@ export class AppComponent implements OnInit {
     this.port = this.data.getPorts();
     this.dmmdevice = this.data.dmmdevice;
   }
+  onPath(){
+
+  }
+  onDev(){
+    
+  }
   connectPort(){
     this.data.connectPort(this.selectedDMMValue,this.selectedPathValue);
   }

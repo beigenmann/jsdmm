@@ -117,48 +117,53 @@ export class DataService implements OnInit {
   }
 
   connectPort(dev: DDMDEV, selectedPathValue: string) {
-    const dmmbuffer_size: number = 14;
-    let arrayBuffer: number[] = [dmmbuffer_size];
-    let arrayIndex: number = 0;
-    let dispvalue: string;
+    if (dev && selectedPathValue) {
+      const dmmbuffer_size: number = 14;
+      let arrayBuffer: number[] = [dmmbuffer_size];
+      let arrayIndex: number = 0;
+      let dispvalue: string;
 
-    if (this.Connect_Text == 'Connect') {
-      var serialPort = new SerialPort(selectedPathValue, {
-        baudrate: dev.serial.baudrate,
-        parity: dev.serial.parity,
-        rtscts: dev.serial.rtscts,
-        databits: dev.serial.databits,
-        stopbits: dev.serial.stopbits,
-        buffersize: dev.serial.buffersize
+      if (this.Connect_Text == 'Connect') {
+        var serialPort = new SerialPort(selectedPathValue, {
+          baudrate: dev.serial.baudrate,
+          parity: dev.serial.parity,
+          rtscts: dev.serial.rtscts,
+          databits: dev.serial.databits,
+          stopbits: dev.serial.stopbits,
+          buffersize: dev.serial.buffersize
 
-      }, false); // this is the openImmediately flag [default is true]
+        }, false); // this is the openImmediately flag [default is true]
 
-      serialPort.open((error) => {
+        serialPort.open((error) => {
 
-        if (error) {
-          console.log('failed to open: ' + error);
-        } else {
-          //console.log('open port ' + this.selectedPathValue + " " + this.selectedDMMValue.serial.baudrate);
-          serialPort.on('data', (data) => {
-            if (data) {
-              const byteArray = new Uint8Array(data);
-              for (var i = 0; i < byteArray.byteLength; i++) {
-                const item = byteArray[i];
-                arrayBuffer[arrayIndex++] = item;
-                if (item == 0x0a) {
-                  this.doParse(arrayBuffer, dev);
-                  arrayIndex = 0;
+          if (error) {
+            console.log('failed to open: ' + error);
+          } else {
+            //console.log('open port ' + this.selectedPathValue + " " + this.selectedDMMValue.serial.baudrate);
+            serialPort.on('data', (data) => {
+              if (data) {
+                const byteArray = new Uint8Array(data);
+                for (var i = 0; i < byteArray.byteLength; i++) {
+                  const item = byteArray[i];
+                  arrayBuffer[arrayIndex++] = item;
+                  if (item == 0x0a) {
+                    this.doParse(arrayBuffer, dev);
+                    arrayIndex = 0;
+                  }
                 }
+              } else {
+                return;
               }
-            } else {
-              return;
-            }
-          });
-        }
-      });
+            });
+          }
+        });
 
+      } else {
+        this.Connect_Text = 'Connect';
+      }
     } else {
-      this.Connect_Text = 'Connect';
+      return;
     }
+
   }
 }
