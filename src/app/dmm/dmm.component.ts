@@ -12,7 +12,7 @@ export class DmmComponent implements OnInit {
   SEVENSG_UNIT_Text: string = 'mV';
   SEVENSG_ICON_Text: string = 'ABCDEFGHI';
   constructor(private data: DataService, private zone: NgZone) {
-
+    
   }
 
 
