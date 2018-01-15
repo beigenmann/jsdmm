@@ -1,1 +1,1 @@
-ng build --bh /jsdmm -op ./docs --prod
+ng build --bh /jsdmm/ -op ./docs --prod
