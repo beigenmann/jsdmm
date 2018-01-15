@@ -1,0 +1,280 @@
+{
+    "device": [
+        {
+            "name": "VC99",
+            "serial": {
+                "baudrate": 2400,
+                "parity": "none",
+                "rtscts": false,
+                "databits": 8,
+                "stopbits": 1,
+                "buffersize": 256
+            },
+            "val":["DIGI1","DIGI2","DIGI3","DIGI4"],
+            "unit":["SI-PR","SI_UNIT"],
+            "protocol": [
+                {
+                    "name": "SIGN",
+                    "byteNr": 0,
+                    "char": true
+                },
+                {
+                    "name": "DIGI1",
+                    "byteNr": 1,
+                    "char": true
+                },
+                {
+                    "name": "DIGI2",
+                    "byteNr": 2,
+                    "char": true
+                },
+                {
+                    "name": "DIGI3",
+                    "byteNr": 3,
+                    "char": true
+                },
+                {
+                    "name": "DIGI4",
+                    "byteNr": 4,
+                    "char": true
+                },
+                {
+                    "name": "POINT",
+                    "byteNr": 6,
+                    "mask": 255,
+                    "mapfrom": 48,
+                    "mapto": 0
+                },
+                {
+                    "name": "POINT",
+                    "byteNr": 6,
+                    "mask": 255,
+                    "mapfrom": 49,
+                    "mapto": 1
+                },
+                {
+                    "name": "POINT",
+                    "byteNr": 6,
+                    "mask": 255,
+                    "mapfrom": 50,
+                    "mapto": 2
+                },
+                {
+                    "name": "POINT",
+                    "byteNr": 6,
+                    "mask": 255,
+                    "mapfrom": 52,
+                    "mapto": 3
+                },
+                {
+                    "name": "AUTO",
+                    "byteNr": 7,
+                    "mask": 32,
+                    "mapfrom": 32,
+                    "mapto": true
+                },
+                {
+                    "name": "DC",
+                    "byteNr": 7,
+                    "mask": 16,
+                    "mapfrom": 16,
+                    "mapto": true
+                },
+                {
+                    "name": "AC",
+                    "byteNr": 7,
+                    "mask": 8,
+                    "mapfrom": 8,
+                    "mapto": true
+                },
+                {
+                    "name": "REL",
+                    "byteNr": 7,
+                    "mask": 4,
+                    "mapfrom": 4,
+                    "mapto": true
+                },
+                {
+                    "name": "HOLD",
+                    "byteNr": 7,
+                    "mask": 2,
+                    "mapfrom": 2,
+                    "mapto": true
+                },
+                {
+                    "name": "BPN",
+                    "byteNr": 7,
+                    "mask": 1,
+                    "mapfrom": 1,
+                    "mapto": true
+                },
+                {
+                    "name": "MAX",
+                    "byteNr": 8,
+                    "mask": 32,
+                    "mapfrom": 32,
+                    "mapto": true
+                },
+                {
+                    "name": "MIN",
+                    "byteNr": 8,
+                    "mask": 16,
+                    "mapfrom": 16,
+                    "mapto": true
+                },
+                {
+                    "name": "APO",
+                    "byteNr": 8,
+                    "mask": 8,
+                    "mapfrom": 8,
+                    "mapto": true
+                },
+                {
+                    "name": "BAT",
+                    "byteNr": 8,
+                    "mask": 4,
+                    "mapfrom": 4,
+                    "mapto": true
+                },
+                {
+                    "name": "SI-PR",
+                    "byteNr": 8,
+                    "mask": 2,
+                    "mapfrom": 2,
+                    "mapto": "n"
+                },
+                {
+                    "name": "SI-PR",
+                    "byteNr": 9,
+                    "mask": 128,
+                    "mapfrom": 128,
+                    "mapto": "\u00B5"
+                },
+                {
+                    "name": "SI-PR",
+                    "byteNr": 9,
+                    "mask": 64,
+                    "mapfrom": 64,
+                    "mapto": "m"
+                },
+                {
+                    "name": "SI-PR",
+                    "byteNr": 9,
+                    "mask": 32,
+                    "mapfrom": 32,
+                    "mapto": "k"
+                },
+                {
+                    "name": "SI-PR",
+                    "byteNr": 9,
+                    "mask": 16,
+                    "mapfrom": 16,
+                    "mapto": "M"
+                },
+                {
+                    "name": "BEEP",
+                    "byteNr": 9,
+                    "mask": 8,
+                    "mapfrom": 8,
+                    "mapto": true
+                },
+                {
+                    "name": "DIODE",
+                    "byteNr": 9,
+                    "mask": 4,
+                    "mapfrom": 4,
+                    "mapto": true
+                },
+                {
+                    "name": "%",
+                    "byteNr": 9,
+                    "mask": 2,
+                    "mapfrom": 2,
+                    "mapto": true
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 128,
+                    "mapfrom": 128,
+                    "mapto": "V"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 64,
+                    "mapfrom": 64,
+                    "mapto": "A"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 32,
+                    "mapfrom": 32,
+                    "mapto": "\u03A9"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 16,
+                    "mapfrom": 16,
+                    "mapto": "hFE"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 8,
+                    "mapfrom": 8,
+                    "mapto": "Hz"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 4,
+                    "mapfrom": 4,
+                    "mapto": "F"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 2,
+                    "mapfrom": 2,
+                    "mapto": "°C"
+                },
+                {
+                    "name": "SI_UNIT",
+                    "byteNr": 10,
+                    "mask": 1,
+                    "mapfrom": 1,
+                    "mapto": "°F"
+                },
+                {
+                    "name": "BAR_SIGN",
+                    "byteNr": 11,
+                    "mask": 128,
+                    "mapfrom": 128,
+                    "mapto": "true"
+                },
+                {
+                    "name": "BAR_VALUE",
+                    "byteNr": 11,
+                    "mask": 127
+                }
+            ]
+        },
+        {
+            "name": "ANYOTHER",
+            "serial": {
+                "baudrate": 2400,
+                "parity": "none",
+                "rtscts": false,
+                "databits": 8,
+                "stopbits": 1,
+                "buffersize": 256
+            },
+            "val":["SIGN","DIGI1","DIGI2","DIGI3","DIGI4"],
+            "unit":["SI-PR","SI_UNIT"],
+            "protocol": []
+        }
+    ]
+}

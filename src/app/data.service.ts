@@ -45,10 +45,11 @@ export class DataService implements OnInit {
       if (devices) {
         devices.forEach(device => {
           console.log(device );
-          device.onReceive =this.onReceive;
+         
+          device.onReceive = this.onReceive;
          
           device.connect().then(data => {
-
+            console.log( 'Connected' );
           }).catch(error =>{
             console.log( 'error ' + error);
           })
