@@ -47,7 +47,9 @@ export class DataService implements OnInit {
           console.log(device );
          
           device.onReceive = this.onReceive;
-          device.onReceiveError = this.onReceiveError;
+          device.onReceiveError = error => {
+            console.log( error );
+          };
          
           device.connect().then(data => {
             console.log( 'Connected' );
@@ -106,9 +108,7 @@ export class DataService implements OnInit {
       return;
     }
   }
-  onReceiveError(data ){
-    console.log(data);
-  }
+  
   doParse(arrayBuffer: number[], dev: DDMDEV) {
     this.dev = dev;
     let map: Map<string, object> = new Map<string, object>();
