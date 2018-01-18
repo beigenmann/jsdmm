@@ -50,7 +50,7 @@ export class DataService implements OnInit {
           device.onReceiveError = error => {
             console.log( error );
           };
-         
+          
           device.connect().then(data => {
             console.log( 'Connected' );
           }).catch(error =>{
