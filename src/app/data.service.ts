@@ -53,9 +53,9 @@ export class DataService implements OnInit {
           
           device.connect().then(data => {
             console.log( 'Connected' );
-          })/*.catch(error =>{
+          }).catch(error =>{
             console.log( 'error2 ' + error);
-          })*/
+          })
           return;
         });
       }
@@ -94,6 +94,7 @@ export class DataService implements OnInit {
   private arrayBuffer: number[] = [this.dmmbuffer_size];
   private arrayIndex: number = 0;
   onReceive(data ){
+    console.log('onReceive:' +data);
     if (data) {
       const byteArray = new Uint8Array(data);
       for (var i = 0; i < byteArray.byteLength; i++) {
