@@ -48,14 +48,14 @@ export class DataService implements OnInit {
          
           device.onReceive = this.onReceive;
           device.onReceiveError = error => {
-            console.log( error );
+            console.log( 'error1 ' + error );
           };
           
           device.connect().then(data => {
             console.log( 'Connected' );
-          }).catch(error =>{
-            console.log( 'error ' + error);
-          })
+          })/*.catch(error =>{
+            console.log( 'error2 ' + error);
+          })*/
           return;
         });
       }

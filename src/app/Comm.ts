@@ -13,6 +13,7 @@ export class CommPort {
   connect() {
     let readLoop = () => {
       this.device_.transferIn(5, 64).then(result => {
+        console.log(result.data );
         this.onReceive(result.data);
         readLoop();
       }, error => {
@@ -22,11 +23,18 @@ export class CommPort {
 
     return this.device_.open()
       .then(() => {
-        if (this.device_.configuration === null) {
-          return this.device_.selectConfiguration(1);
-        }
+          console.log( 'selectConfiguration ' );
+          if (this.device_.configuration === null) {
+            return this.device_.selectConfiguration(1);
+          }
       })
-      .then(() => this.device_.claimInterface(2))
+      .then(() => {
+        console.log( 'in '  + this.device_.configuration.interfaces[2].interfaceNumber );
+         this.device_.claimInterface(this.device_.configuration.interfaces[2].interfaceNumber );
+      })/*.then(() => {
+        console.log( 'selectAlternateInterface '  );
+        this.device_.selectAlternateInterface(2, 0);
+      })*/
       .then(() => this.device_.controlTransferOut({
         'requestType': 'class',
         'recipient': 'interface',
@@ -44,8 +52,8 @@ export class CommPort {
       'requestType': 'class',
       'recipient': 'interface',
       'request': 0x22,
-      'value': 0x00,
-      'index': 0x02
+      'value': 0x01,
+      'index': 0x01
     })
       .then(() => this.device_.close());
   };

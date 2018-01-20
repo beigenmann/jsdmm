@@ -9,6 +9,7 @@ export interface UsbDevice extends EventTarget {
     selectConfiguration(configNumber: number): Promise<void>;
     claimInterface(interfaceNumber: number): Promise<void>;
     controlTransferOut(obj: any): Promise<void>;
+    selectAlternateInterface(interfaceNumber: number,configNumber: number): Promise<void>;
     transferOut(interfaceNumber: number, data: any): Promise<void>;
     close(): Promise<void>;
 }
