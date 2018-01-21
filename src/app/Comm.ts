@@ -36,11 +36,11 @@ export class CommPort {
         this.device_.selectAlternateInterface(2, 0);
       })*/
       .then(() => this.device_.controlTransferOut({
-        'requestType': 'class',
-        'recipient': 'interface',
-        'request': 0x22, // CDC_SET_CONTROL_LINE_STATE
-        'value': 0x01,
-        'index': 0x02
+        requestType: 'class',
+        recipient: 'interface',
+        request: 0x22, // CDC_SET_CONTROL_LINE_STATE
+        value: 0x01,
+        index: 0x02
       }))
       .then(() => {
         readLoop();
