@@ -14,7 +14,8 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
+    <a mat-button (click)="connectUSBPort()">{{ Connect_USBText }}</a>
+    <a mat-button (click)="connectBlueToothPort()">{{ Connect_BlueToothText }}</a>
     <a mat-button (click)="connectPort()">{{ Connect_Text }}</a>
     <a mat-button routerLink="dmm">Digital Voltmeter</a>
     <a mat-button routerLink="about">About</a>
