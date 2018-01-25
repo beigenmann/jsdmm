@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DataService, DDMDEV} from './data.service';
 import {BluetoothDMM} from './webbluetooth';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

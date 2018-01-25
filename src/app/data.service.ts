@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { Comm, CommPort } from './Comm';
 import * as dmmconfig from '../assets/config/jsdmm.config.json';
 import * as serialPort from 'browser-serialport/index';
 
@@ -31,7 +30,7 @@ export interface DDMDEV {
 @Injectable()
 export class DataService implements OnInit {
   Connect_Text: string = 'Connect';
-  private _Comm: Comm;
+
   private dev: DDMDEV
   private valueSubject: Subject<{ value: string, unit: string, map: Map<string, object> }> = new Subject();
 
@@ -39,34 +38,7 @@ export class DataService implements OnInit {
   ];
 
   constructor() {
-    this._Comm = new Comm();
     
-    this._Comm.getPorts().then(devices => {
-      if (devices) {
-        devices.forEach(device => {
-          console.log(device );
-         
-          device.onReceive = this.onReceive;
-          device.onReceiveError = error => {
-            console.log( 'error1 ' + error );
-          };
-          
-          device.connect().then(data => {
-            console.log( 'Connected' );
-          }).catch(error =>{
-            console.log( 'error2 ' + error);
-          })
-          return;
-        });
-      }
-    });
-    const device: DDMDEV[] = (<any>dmmconfig).device;
-    device.forEach(devItem => {
-      this.dmmdevice.push({ value: devItem, viewValue: devItem.name });
-
-    });
-
-
   }
   ngOnInit() {
     console.log('On init');
@@ -163,10 +135,7 @@ export class DataService implements OnInit {
   }
 
   connectPort(dev: DDMDEV, selectedPathValue: string) {
-    this._Comm.requestPort().then(device => {
-      console.log(device );
-    });
-
+    
 
 
     if (dev && selectedPathValue) {
