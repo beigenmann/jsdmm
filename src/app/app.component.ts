@@ -12,6 +12,7 @@ import {BluetoothDMM} from './webbluetooth';
 
 export class AppComponent implements OnInit {
   title = 'app';
+  device: any = {};
   Connect_Text: string = 'Connect';
   Connect_USBText: string = 'Connect USB';
   Connect_BlueToothText: string = 'Connect Bluetooth';
@@ -28,17 +29,43 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    this.port = this.data.getPorts();
     this.dmmdevice = this.data.dmmdevice;
+    this.getDeviceStatus();
+    this. bluetooth. streamValues().subscribe(this.showDMM.bind(this));
   }
   onPath() {}
   onDev() {}
   connectUSBPort() {}
 
+  
   connectBlueToothPort() {
-    this.bluetooth.requestDevice();
+    try{      
+      this.bluetooth.requestDevice().subscribe(this.showDMM.bind(this));
+    }
+    catch(e) {
+
+    }
   }
   connectPort() {
     this.data.connectPort(this.selectedDMMValue, this.selectedPathValue);
+  }
+
+  getDeviceStatus() {
+    this.bluetooth.getDevice().subscribe(
+      (device) => {
+
+        if(device) {
+          this.device = device;
+        }
+        else {
+          // device not connected or disconnected
+          this.device = null;
+        }
+      }
+    );
+  }
+
+  showDMM(value: number){
+    console.log('number'+ value);
   }
 }

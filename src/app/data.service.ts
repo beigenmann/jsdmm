@@ -47,21 +47,6 @@ export class DataService implements OnInit {
     return this.valueSubject.asObservable();
   }
 
-  getPorts() {
-    let port = [
-
-    ];
-    serialPort.list((err, ports) => {
-      if (err) {
-        console.log('err');
-        return;
-      }
-      ports.forEach(portItem => {
-        port.push({ value: portItem.comName, viewValue: portItem.comName });
-      });
-    });
-    return port;
-  }
   private dmmbuffer_size: number = 14;
   private arrayBuffer: number[] = [this.dmmbuffer_size];
   private arrayIndex: number = 0;
